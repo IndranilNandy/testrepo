@@ -22,4 +22,3 @@ spec:
             script: |
               #!/bin/sh
               echo -e "Msg: $(params.text)"
-                - name:
