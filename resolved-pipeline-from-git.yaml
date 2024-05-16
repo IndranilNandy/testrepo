@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: resolved-pipeline-from-git
+spec:
+  params:
+    - name: input
+      type: string
+      default: "default msg"
+  tasks:
+    - name: log-msg
+      params:
+        - name: text
+          value: "$(params.input)"
+      taskSpec:
+        params:
+          - name: text
+            type: string
+        steps:
+          - name: msg
+            image: alpine/git
+            script: |
+              #!/bin/sh
+              echo -e "Msg: $(params.text)"
+                - name:
